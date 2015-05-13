@@ -1,0 +1,37 @@
+package com.camp.biome;
+
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.BiomeManager;
+
+public class BiomeRegistry {
+	
+	public static void MainRegistry(){
+		initializeBiome();
+		registerBiome();
+	}
+		public static BiomeGenBase biomeTest;
+		public static BiomeGenBase biomeIceMountain;
+		
+		public static void initializeBiome(){
+			biomeTest = new BiomeGenTest(137, true).setBiomeName("Test").setTemperatureRainfall(20F, 20F);
+			biomeIceMountain = new BiomeGenIceMountain(138, true).setBiomeName("Icy Mountains").setTemperatureRainfall(1, 1);
+		}
+		
+		public static void registerBiome(){
+			//Ice Mountain
+			BiomeDictionary.registerBiomeType(biomeIceMountain, Type.SNOWY);
+			BiomeManager.addSpawnBiome(biomeIceMountain);
+			BiomeManager.addVillageBiome(biomeIceMountain, true);
+			BiomeManager.strongHoldBiomes.add(biomeIceMountain);
+			//Test
+			BiomeDictionary.registerBiomeType(biomeTest, Type.MAGICAL);
+			BiomeManager.addSpawnBiome(biomeTest);
+			BiomeManager.addVillageBiome(biomeTest, true);
+			BiomeManager.strongHoldBiomes.add(biomeTest);
+			//BiomeManager.
+			
+		}
+
+}

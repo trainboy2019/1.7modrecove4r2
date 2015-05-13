@@ -1,0 +1,99 @@
+package com.camp.biome;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.monster.EntitySnowman;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.WorldChunkManager;
+import net.minecraft.world.biome.BiomeGenBase.Height;
+import net.minecraft.world.gen.feature.WorldGenDesertWells;
+import net.minecraft.world.gen.structure.MapGenVillage;
+
+public class BiomeGenIceMountain extends BiomeGenBase{
+	private static final Height biomeHeight = new Height(2F, 1.00F);
+	public static ArrayList<BiomeGenBase> strongHoldBiomes = new ArrayList<BiomeGenBase>();
+	private boolean field_150615_aC;
+
+	public BiomeGenIceMountain(int id, boolean p_i45378_2_) {
+		super(id);
+		this.setTemperatureRainfall(1, 1);
+		//this.
+		this.field_150615_aC = p_i45378_2_;
+		this.fillerBlock = Blocks.packed_ice;
+		this.topBlock = Blocks.snow;
+		this.spawnableMonsterList.clear();
+        this.spawnableCreatureList.clear();
+        this.spawnableWaterCreatureList.clear();
+        this.spawnableCreatureList.add(new SpawnListEntry(EntitySnowman.class, 3, 1, 5));
+        this.waterColorMultiplier = 0xffffff;
+        this.waterColorMultiplier = 0x0ffcff;
+       // this.getBiomeFoliageColor(p_150571_1_, p_150571_2_, p_150571_3_)
+	}
+	
+	@SuppressWarnings("unchecked")
+    public static void addVillageBiome(BiomeGenBase biome, boolean canSpawn)
+    {
+        if (!MapGenVillage.villageSpawnBiomes.contains(biome))
+        {
+            ArrayList<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>(MapGenVillage.villageSpawnBiomes);
+            biomes.add(biome);
+            MapGenVillage.villageSpawnBiomes = biomes;
+        }
+    }
+	
+	
+	public static void addStrongholdBiome(BiomeGenBase biome)
+    {
+        if (!strongHoldBiomes.contains(biome))
+        {
+            strongHoldBiomes.add(biome);
+        }
+    }
+	
+	public static void addSpawnBiome(BiomeGenBase biome)
+    {
+        if (!WorldChunkManager.allowedBiomes.contains(biome))
+        {
+            WorldChunkManager.allowedBiomes.add(biome);
+        }
+    }
+	 
+	 public void decorate(World p_76728_1_, Random p_76728_2_, int p_76728_3_, int p_76728_4_)
+	    {
+	        super.decorate(p_76728_1_, p_76728_2_, p_76728_3_, p_76728_4_);
+
+	        if (p_76728_2_.nextInt(1000) == 0)
+	        {
+	            int k = p_76728_3_ + p_76728_2_.nextInt(16) + 8;
+	            int l = p_76728_4_ + p_76728_2_.nextInt(16) + 8;
+	            WorldGenDesertWells worldgendesertwells = new WorldGenDesertWells();
+	            worldgendesertwells.generate(p_76728_1_, p_76728_2_, k, p_76728_1_.getHeightValue(k, l) + 1, l);
+	        }
+	    }
+	 
+	 
+	 
+	/* @Override
+		//TODO:		getBiomeFoliageColor()
+		public int getBiomeFoliageColor(int x, int y, int z)
+		{
+			return 0x4e00ff;
+		}*/
+	 
+	 @SideOnly(Side.CLIENT)
+	    public int getBiomeFoliageColor(int p_150571_1_, int p_150571_2_, int p_150571_3_)
+	    {
+	        double d0 = (double)MathHelper.clamp_float(this.getFloatTemperature(p_150571_1_, p_150571_2_, p_150571_3_), 0.0F, 1.0F);
+	        double d1 = (double)MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
+	        //return getModdedBiomeFoliageColor(ColorizerFoliage.getFoliageColor(d0, d1));
+	        return 0x4e00ff;
+	    }
+
+}

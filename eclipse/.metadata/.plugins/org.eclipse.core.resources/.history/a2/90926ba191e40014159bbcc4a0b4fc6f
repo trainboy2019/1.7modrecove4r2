@@ -1,0 +1,18 @@
+package com.camp.block;
+
+import net.minecraft.block.BlockTorch;
+import cpw.mods.fml.common.Loader;
+//import coloredlightscore.src.api.CLApi;
+
+public class GreenTorch extends BlockTorch{
+	
+	{
+		this.canProvidePower();
+		if (Loader.isModLoaded("coloredlightscore")) {
+            CLApi.setBlockColorRGB(this, 0, 6, 6);
+        } else {
+            setLightLevel(6F/15F);
+        }
+	}
+
+}

@@ -1,0 +1,27 @@
+package com.camp.block;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import coloredlightscore.src.api.CLApi;
+
+import com.camp.lib.StringLibrary;
+
+import cpw.mods.fml.common.Loader;
+
+public class AmethystBlock extends Block{
+
+	protected AmethystBlock(Material p_i45394_1_) {
+		super(p_i45394_1_);
+		this.setBlockTextureName(StringLibrary.MODID + ":" + "amethyst" + "Block");
+		// TODO Auto-generated constructor stub
+		if (Loader.isModLoaded("coloredlightscore")) {
+            CLApi.setBlockColorRGB(this, 119, 52, 156);
+        } else {
+            setLightLevel(6F/15F);
+        }
+	}
+	public boolean isOpaqueCube() {
+		return false;
+		}
+
+}

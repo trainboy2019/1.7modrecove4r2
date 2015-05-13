@@ -1,0 +1,12 @@
+package com.camp.block;
+
+import net.minecraft.block.BlockTorch;
+
+public class GreenTorch extends BlockTorch{
+	
+	{
+		this.canProvidePower();
+	//	this.
+	}
+
+}

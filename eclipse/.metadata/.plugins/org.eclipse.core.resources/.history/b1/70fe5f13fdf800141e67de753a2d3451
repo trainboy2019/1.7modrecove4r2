@@ -1,0 +1,11 @@
+package java.yamhaven.easycoloredlights.proxy.copy;
+
+public class CommonProxy {
+    public void initRenderers() {
+
+    }
+
+    public void initSounds() {
+
+    }
+}

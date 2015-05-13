@@ -1,0 +1,29 @@
+package com.camp.block;
+
+import com.camp.creativetabs.CreativeTabsManager;
+
+import net.minecraft.block.material.Material;
+import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraft.block.*;
+
+
+
+public class HealBlock extends BlockFluidClassic {
+
+	public HealBlock(Fluid fluid, Material material) {
+		super(BlockManager.milkFluid, BlockManager.milkMaterial);
+		// TODO Auto-generated constructor stub
+this.blockHardness = 100.0F;
+this.setLightOpacity(3);
+this.setCreativeTab(CreativeTabsManager.tabBlock);
+this.setDensity((1));
+this.onEntityCollidedWithBlock(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_, p_149670_5_);
+
+
+		
+	}
+	
+
+}
